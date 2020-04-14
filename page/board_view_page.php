@@ -1,7 +1,7 @@
 <?php
 
 $id = $_GET['no'];
-$query = "SELECT title, content, date, hit, id, author, fileup FROM daihan.board WHERE id = $id";
+$query = "SELECT title, content, date, hit, id, author, fileup FROM $dbName WHERE id = $id";
 $result = $db->query($query);
 $row = $result->fetch(PDO::FETCH_ASSOC);
 
@@ -9,9 +9,9 @@ $row = $result->fetch(PDO::FETCH_ASSOC);
 //$row['hit'] + 1  WHERE id = $row['id']
 	// 조회수 증가 처리 (DB)
 	$cal_hit = $row['hit']+1;
-	$hit_query = "UPDATE daihan.board SET hit = $cal_hit WHERE id = $id";
+	$hit_query = "UPDATE $dbName SET hit = $cal_hit WHERE id = $id";
   $db->query($hit_query);
-  $hit_result_query = "SELECT hit FROM daihan.board WHERE id = $id";
+  $hit_result_query = "SELECT hit FROM $dbName WHERE id = $id";
   $hit_result = $db->query($hit_result_query);
   $hit_row = $hit_result->fetch(PDO::FETCH_ASSOC);
 ?>

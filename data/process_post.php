@@ -49,7 +49,7 @@ switch ($_GET['mode']) {
     $return_reason = (isset($_POST['reason2']) && htmlspecialchars($_POST['reason2'])) ? htmlspecialchars($_POST['reason1']) . " - " . htmlspecialchars($_POST['reason2']) : htmlspecialchars($_POST['reason1']);
 
 
-    $query = "INSERT INTO daihan.return_post
+    $query = "INSERT INTO $dbName
     ( date, order_number, name, reason, tracking_number, userid, pay_method, reqNo, resNo )
     VALUES
     ( NOW(), :order_number, :name, :reason, :tracking_number, :userid, :pay_method, :reqNo, :resNo )";
@@ -137,7 +137,7 @@ switch ($_GET['mode']) {
 
         foreach( $checked as $value ) {
 
-          $query = "UPDATE daihan.return_post SET ok = 'y' WHERE id = $value";
+          $query = "UPDATE $dbName SET ok = 'y' WHERE id = $value";
           $stmt = $db->query($query);
 
           $count = $stmt->rowCount();
@@ -162,7 +162,7 @@ switch ($_GET['mode']) {
     //주문 취소
     $id = $_POST['checked'];
 
-    $query = "SELECT * FROM daihan.return_post WHERE id = :id";
+    $query = "SELECT * FROM $dbName WHERE id = :id";
 
     $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $stmt->execute(array(
@@ -191,7 +191,7 @@ switch ($_GET['mode']) {
 
     if ($cancel_stat == "Y") {
 
-      $query = "UPDATE daihan.return_post SET ok = 'c' WHERE id = $id[0]";
+      $query = "UPDATE $dbName SET ok = 'c' WHERE id = $id[0]";
       $stmt = $db->query($query);
 
       $count = $stmt->rowCount();
@@ -223,7 +223,7 @@ switch ($_GET['mode']) {
 
         foreach( $checked as $value ) {
 
-          $query = "UPDATE daihan.return_post SET ok = 'n' WHERE id = $value";
+          $query = "UPDATE $dbName SET ok = 'n' WHERE id = $value";
           $stmt = $db->query($query);
 
           $count = $stmt->rowCount();

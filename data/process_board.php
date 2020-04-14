@@ -23,7 +23,7 @@ switch ($_GET['mode']) {
 
     $result = move_uploaded_file($tmpfile,$folder);
 
-    $query = "INSERT INTO daihan.board
+    $query = "INSERT INTO $dbName
     (title, content, fileup, author, date, hit, password)
     VALUES
     ( :title, :content, :name, :login_session, NOW() , 0, :ec_pw)";
@@ -51,7 +51,7 @@ switch ($_GET['mode']) {
 
   case 'modify':
     $id = $_POST['id'];
-    $query = "SELECT id, password FROM daihan.board WHERE id = :id";
+    $query = "SELECT id, password FROM $dbName WHERE id = :id";
     $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $stmt->execute(array(':id'=>$id));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -78,7 +78,7 @@ switch ($_GET['mode']) {
     } else {
       $result = move_uploaded_file($tmpfile,$folder);
 
-      $query = "UPDATE daihan.board SET
+      $query = "UPDATE $dbName SET
         title = :title,
         fileup = :name,
         content = :content
@@ -107,7 +107,7 @@ switch ($_GET['mode']) {
   case 'delete':
   $id = $_POST['id'];
   $password_check = htmlspecialchars($_POST['password_check']);
-  $query = "SELECT password, fileup FROM daihan.board WHERE id = :id";
+  $query = "SELECT password, fileup FROM $dbName WHERE id = :id";
   $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
   $stmt->execute(array(':id'=>$id));
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -115,7 +115,7 @@ switch ($_GET['mode']) {
   if(dec($row['password']) == $password_check){
 
   unlink("../upload/{$row['fileup']}");
-  $query = "DELETE FROM daihan.board WHERE id = :id";
+  $query = "DELETE FROM $dbName WHERE id = :id";
   $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
   $stmt->execute(array(':id'=>$id));
 

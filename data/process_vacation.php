@@ -20,7 +20,7 @@ switch ($_GET['mode']) {
   //vac 값 별로 쿼리 저장
 
   //남아있는 연차 불러오기
-  $remain_query = "SELECT remain FROM daihan.2020_vacation WHERE name='$login_session' AND vacation='y' ORDER BY id DESC LIMIT 1";
+  $remain_query = "SELECT remain FROM $dbName WHERE name='$login_session' AND vacation='y' ORDER BY id DESC LIMIT 1";
   $remain = $db->query($remain_query);
   $remain_result = $remain->fetch(PDO::FETCH_ASSOC);
 
@@ -28,7 +28,7 @@ switch ($_GET['mode']) {
 
     case 'work_vac': //근무휴일
 
-    $query = "INSERT INTO daihan.2020_vacation (date, name, benefit_vac) VALUES ( :date, :name, :benefit_vac)";
+    $query = "INSERT INTO $dbName (date, name, benefit_vac) VALUES ( :date, :name, :benefit_vac)";
 
     $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $stmt->execute(array(
@@ -60,7 +60,7 @@ switch ($_GET['mode']) {
     $cal_result = $remain_result['remain'] - $use_date;
 
     //계산된 연차 등록
-    $query = "INSERT INTO daihan.2020_vacation (date, use_date, remain, name, vacation, am_pm_w) VALUES ( :date, :use_date, :remain, :name, :vacation, :am_pm_w)";
+    $query = "INSERT INTO $dbName (date, use_date, remain, name, vacation, am_pm_w) VALUES ( :date, :use_date, :remain, :name, :vacation, :am_pm_w)";
 
     $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $stmt->execute(array(
@@ -96,7 +96,7 @@ switch ($_GET['mode']) {
     $cal_result = $remain_result['remain'] - $use_date;
 
     //계산된 연차 등록
-    $query = "INSERT INTO daihan.2020_vacation (date, use_date, remain, name, vacation, am_pm_w) VALUES ( :date, :use_date, :remain, :name, :vacation, :am_pm_w)";
+    $query = "INSERT INTO $dbName (date, use_date, remain, name, vacation, am_pm_w) VALUES ( :date, :use_date, :remain, :name, :vacation, :am_pm_w)";
 
     $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $stmt->execute(array(
@@ -131,7 +131,7 @@ switch ($_GET['mode']) {
     $cal_result = $remain_result['remain'] - $use_date;
 
     //계산된 연차 등록
-    $query = "INSERT INTO daihan.2020_vacation (date, use_date, remain, name, vacation, am_pm_w) VALUES ( :date, :use_date, :remain, :name, :vacation, :am_pm_w)";
+    $query = "INSERT INTO $dbName (date, use_date, remain, name, vacation, am_pm_w) VALUES ( :date, :use_date, :remain, :name, :vacation, :am_pm_w)";
 
     $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $stmt->execute(array(
@@ -192,7 +192,7 @@ switch ($_GET['mode']) {
       $member = $_POST['member'];
 
       foreach ($member as $name) {
-        $query = "INSERT INTO daihan.2020_vacation (date, name, weekend_work) VALUES ( :date, :name, :weekend_work)";
+        $query = "INSERT INTO $dbName (date, name, weekend_work) VALUES ( :date, :name, :weekend_work)";
 
         $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $stmt->execute(array(
@@ -236,7 +236,7 @@ switch ($_GET['mode']) {
       $ex = explode('-', $_POST['check_name']);
 
       $delete = $ex[1];
-      $query = "DELETE FROM daihan.2020_vacation WHERE id = '$delete'";
+      $query = "DELETE FROM $dbName WHERE id = '$delete'";
       $result = $db->query($query);
 
       $count = $result->rowCount();
@@ -273,7 +273,7 @@ switch ($_GET['mode']) {
 
       $id = $ex[1];
 
-      $query = "UPDATE daihan.2020_vacation SET benefit_vac = :benefit_vac WHERE id = :id";
+      $query = "UPDATE $dbName SET benefit_vac = :benefit_vac WHERE id = :id";
 
       $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
       $stmt->execute(array(
@@ -314,7 +314,7 @@ switch ($_GET['mode']) {
 
           $id = $ex[1];
 
-          $query = "UPDATE daihan.2020_vacation SET benefit_vac = :benefit_vac WHERE id = :id";
+          $query = "UPDATE $dbName SET benefit_vac = :benefit_vac WHERE id = :id";
 
           $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
           $stmt->execute(array(
@@ -351,7 +351,7 @@ switch ($_GET['mode']) {
 
       $id = $ex[1];
 
-      $query = "UPDATE daihan.2020_vacation SET benefit_vac = :benefit_vac WHERE id = :id";
+      $query = "UPDATE $dbName SET benefit_vac = :benefit_vac WHERE id = :id";
 
       $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
       $stmt->execute(array(

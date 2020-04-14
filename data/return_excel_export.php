@@ -5,7 +5,7 @@
       $select_id = $_POST['checked'];
       $selected = implode(" OR id=", $select_id);
 
-      $query = "SELECT * FROM daihan.return_list2 WHERE id= $selected ORDER BY id";
+      $query = "SELECT * FROM $dbName WHERE id= $selected ORDER BY id";
 
     //set the desired name of the excel file
     $fileName = date('Y-m-d') . '_환불일지';
@@ -114,7 +114,7 @@
 
     unlink($filepath); // 생성된 excel 파일 삭제
   } else {
-    $query = "SELECT * FROM daihan.return_list2 ORDER BY id";
+    $query = "SELECT * FROM $dbName ORDER BY id";
 
   //set the desired name of the excel file
   $fileName = date('Y-m-d') . '_환불일지';

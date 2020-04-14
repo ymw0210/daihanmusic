@@ -2,7 +2,7 @@
   $id = $_GET['no'];
   $password_check = htmlspecialchars($_POST['password_check']);
 
-  $query = "SELECT title, content, id, fileup, password FROM daihan.board WHERE id = $id";
+  $query = "SELECT title, content, id, fileup, password FROM $dbName WHERE id = $id";
   $result = $db->query($query);
   $row = $result->fetch(PDO::FETCH_ASSOC);
 

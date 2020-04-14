@@ -121,8 +121,8 @@
           $query_year = date("Y-m", mktime(0, 0, 0, $month, $day, $year));
           $final_qdate = $query_year . '%';
 
-          $work_query = "SELECT name, date, benefit_vac, am_pm_w, id FROM daihan.2020_vacation WHERE date LIKE '{$final_qdate}' AND weekend_work = 'y'";
-          $vac_query = "SELECT name, date, use_date, am_pm_w, benefit_vac, id FROM daihan.2020_vacation WHERE date LIKE '{$final_qdate}' AND vacation = 'y' OR benefit_vac = 'v'";
+          $work_query = "SELECT name, date, benefit_vac, am_pm_w, id FROM $dbName WHERE date LIKE '{$final_qdate}' AND weekend_work = 'y'";
+          $vac_query = "SELECT name, date, use_date, am_pm_w, benefit_vac, id FROM $dbName WHERE date LIKE '{$final_qdate}' AND vacation = 'y' OR benefit_vac = 'v'";
 
           // 6. 총 주 수에 맞춰서 세로줄 만들기
           for($i=1; $i <= $total_week; $i++){?>
@@ -131,7 +131,7 @@
           // 7. 총 가로칸 만들기
           for ($j = 0; $j < 7; $j++) {
 
-            //현재 날짜 표시 
+            //현재 날짜 표시
             if ( !( ($i == 1 && $j < $start_week) || ($i == $total_week && $j > $last_week) ) && $year == $thisyear && $month == $thismonth && $day == date("j")) {
               $current = "class='current'";
             } else {
@@ -333,7 +333,7 @@
         echo '</p>';
 
         for ($i=0; $i < sizeof($members); $i++) {
-          $query = "SELECT * FROM daihan.2020_vacation WHERE name= '$members[$i]' AND vacation='y' AND am_pm_w != 'v' ORDER BY id";
+          $query = "SELECT * FROM $dbName WHERE name= '$members[$i]' AND vacation='y' AND am_pm_w != 'v' ORDER BY id";
           $result = $db->query($query);
           echo '<div class="card">
           <div id="'. $members[$i] .'" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" style="">

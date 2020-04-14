@@ -23,16 +23,7 @@
       $error = "Your Login Name or Password is invalid";
       }
 
-/*
-      if($count == 1) {
-         $_SESSION['login_user'] = $myusername;
-
-         header("location: ..\page\welcome_page.php");
-      }else {
-         $error = "Your Login Name or Password is invalid";
-      }
-   }
- */}
+    }
 ?>
 <html>
 

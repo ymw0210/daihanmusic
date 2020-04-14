@@ -11,7 +11,7 @@ switch ($_GET['mode']) {
     $ec_account_name = ec(htmlspecialchars($_POST['account_name']));
     $return_money = htmlspecialchars($_POST['return_money']);
 
-    $query = "INSERT INTO daihan.return_list2 (date, order_number, name, reason, bank, account, account_name, return_money, submit_id, checked ) VALUES ( NOW(), :order_number, :name, :reason, :ec_bank, :ec_account, :ec_account_name, :return_money, :login_session , '')";
+    $query = "INSERT INTO $dbName (date, order_number, name, reason, bank, account, account_name, return_money, submit_id, checked ) VALUES ( NOW(), :order_number, :name, :reason, :ec_bank, :ec_account, :ec_account_name, :return_money, :login_session , '')";
     $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $stmt->execute(array(
       ':order_number'=>$order_number,
@@ -46,7 +46,7 @@ switch ($_GET['mode']) {
       $ec_account_name = ec(htmlspecialchars($_POST['account_name']));
       $return_money = htmlspecialchars($_POST['return_money']);
 
-      $query = "UPDATE daihan.return_list2 SET
+      $query = "UPDATE $dbName SET
         order_number = :order_number,
         name = :name,
         reason = :reason,
@@ -87,7 +87,7 @@ switch ($_GET['mode']) {
 
         foreach( $checked as $value ) {
 
-          $query = "UPDATE daihan.return_list2 SET checked = '1' WHERE id = $value";
+          $query = "UPDATE $dbName SET checked = '1' WHERE id = $value";
           $stmt = $db->query($query);
 
           $count = $stmt->rowCount();
@@ -120,7 +120,7 @@ switch ($_GET['mode']) {
     $return_money = htmlspecialchars($_POST['return_money']);
 
 
-    $query = "UPDATE daihan.return_list2 SET
+    $query = "UPDATE $dbName SET
       order_number = :order_number,
       name = :name,
       reason = :reason,
@@ -159,7 +159,7 @@ switch ($_GET['mode']) {
 
     $id = $_POST['checked'];
 
-    $query = "DELETE FROM daihan.return_list2 WHERE id = :id";
+    $query = "DELETE FROM $dbName WHERE id = :id";
 
 
       $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
@@ -190,7 +190,7 @@ switch ($_GET['mode']) {
 
         foreach( $checked as $value ) {
 
-          $query = "UPDATE daihan.return_list2 SET checked = '0' WHERE id = $value";
+          $query = "UPDATE $dbName SET checked = '0' WHERE id = $value";
           $stmt = $db->query($query);
 
           $count = $stmt->rowCount();

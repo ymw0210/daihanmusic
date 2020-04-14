@@ -4,7 +4,7 @@ include("../config.php");
         $pagenation = new Pagenation(10, 5);
 
           /* Load data */
-          $query = "SELECT count(id) as total from daihan.return_list2";
+          $query = "SELECT count(id) as total from $dbName";
 
           $pg_result = $pagenation->getPageData($query);
 

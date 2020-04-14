@@ -14,7 +14,7 @@ if(isset($_POST['checked'])) {
       <form action="../data/process_return.php?mode=modify" method="POST">
         <?php
         $id = $_POST['checked'];
-        $query = "SELECT * FROM daihan.return_list2 WHERE id = :id";
+        $query = "SELECT * FROM $dbName WHERE id = :id";
         $stmt = $db->prepare($query, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $stmt->execute(array(':id'=>$id[0]));
         $row = $stmt->fetch(PDO::FETCH_ASSOC);

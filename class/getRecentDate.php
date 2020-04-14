@@ -17,7 +17,7 @@ class getRecentDate extends PDO {
     $date_div = date("Y-m-d", $timestamp);
 
     global $db;
-    $return_query = 'SELECT date FROM daihan.return_list2 ORDER BY date DESC LIMIT 1';
+    $return_query = 'SELECT date FROM $dbName ORDER BY date DESC LIMIT 1';
 
     //데이터베이스 최신글 date 가져오기
     $result = $db->query($return_query);
@@ -42,7 +42,7 @@ class getRecentDate extends PDO {
     $date_div = date("Y-m-d", $timestamp);
 
     global $db;
-    $board_query = 'SELECT date FROM daihan.board ORDER BY date DESC LIMIT 1';
+    $board_query = 'SELECT date FROM $dbName ORDER BY date DESC LIMIT 1';
 
     //데이터베이스 최신글 date 가져오기
     $result = $db->query($board_query);
@@ -67,7 +67,7 @@ class getRecentDate extends PDO {
     $date_div = date("Y-m-d", $timestamp);
 
     global $db;
-    $board_query = 'SELECT date FROM daihan.return_post ORDER BY date DESC LIMIT 1';
+    $board_query = 'SELECT date FROM $dbName ORDER BY date DESC LIMIT 1';
 
     //데이터베이스 최신글 date 가져오기
     $result = $db->query($board_query);

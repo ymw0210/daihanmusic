@@ -2,7 +2,7 @@
 <?php
     $id = $_GET["id"];
     $page = $_GET['page'];
-    $query = "SELECT password FROM daihan.board WHERE id = '$id'";
+    $query = "SELECT password FROM $dbName WHERE id = '$id'";
     $result =  $db->query($query);
     $row = $result->fetch(PDO::FETCH_ASSOC);
 ?>

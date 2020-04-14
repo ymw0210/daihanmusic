@@ -7,12 +7,12 @@
 <?php
 $pagenation = new Pagenation(10, 5);
 
-$query="SELECT count(id) as total FROM daihan.board";
+$query="SELECT count(id) as total FROM $dbName";
 
 $pg_result = $pagenation->getBoardPageData($query);
 
 // 현재페이지 쿼리
-$query2 = "SELECT * FROM daihan.board ORDER BY id DESC LIMIT ".$pg_result['limit_idx'].", ".$pg_result['page_set'];
+$query2 = "SELECT * FROM $dbName ORDER BY id DESC LIMIT ".$pg_result['limit_idx'].", ".$pg_result['page_set'];
 
 ?>
 <div class="sec01">

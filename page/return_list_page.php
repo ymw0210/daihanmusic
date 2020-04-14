@@ -103,7 +103,7 @@
       // 한페이지 줄수, 한페이지 블럭수 설정
       $pagenation = new Pagenation(10, 5);
 
-      $query='SELECT count(id) AS total FROM daihan.return_list2 '.$search_qr.' LIKE "%' . $search_name . '%"';
+      $query='SELECT count(id) AS total FROM $dbName '.$search_qr.' LIKE "%' . $search_name . '%"';
 
       $pg_result = $pagenation->getReturnPageData($query);
 
