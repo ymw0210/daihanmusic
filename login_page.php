@@ -7,7 +7,7 @@
 
       $myusername = htmlspecialchars($_POST['username']);
       $mypassword = htmlspecialchars($_POST['password']);
-      $stmt = $db->prepare("SELECT * FROM daihan.memberlist2 WHERE userid = :userid");
+      $stmt = $db->prepare("SELECT * FROM $dbName WHERE userid = :userid");
       $stmt->bindParam(':userid', $myusername);
       $stmt->execute();
       $row = $stmt->fetch(PDO::FETCH_ASSOC);
