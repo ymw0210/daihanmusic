@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="..\welcome.php?page=welcome">Daihan Music</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-md-center" id="navbarNavAltMarkup">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          환불<?=$return_new?>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="../welcome.php?page=return&pg=1">환불 일지<?=$return_new?></a>
+          <a class="dropdown-item" href="../welcome.php?page=return_insert">환불 등록</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        택배<?=$post_new?>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="../welcome.php?page=post_insert">택배 등록</a>
+        <a class="dropdown-item" href="../welcome.php?page=post&pg=1">반품 택배 현황<?=$post_new?></a>
+      </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../welcome.php?page=mainorder">메인오더</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../welcome.php?page=vacation">근무 스케줄</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="../welcome.php?page=board&pg=1">직원 게시판<?=$board_new?></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">환영합니다 <?=$login_session?>님</a>
+      </li>
+    </ul>
+  </div>
+</nav>
