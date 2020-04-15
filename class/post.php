@@ -3,13 +3,13 @@ include("SEED128.php");
 
 $seed = new SEED128();
 
-$key = "2515b239435db7fc81492587344442";
-$sec_key = "5116af64c05ad7fb131215";
-$track_key = "2515b239435db7fc81492587344442";
+$key = ""; //인증키
+$sec_key = ""; //보안키
+$track_key = ""; //택배조회 키
 $regdata = "&regData=";
 
 //우체국 고객번호
-$custNo_regdata = "memberID=daihanmusic2";
+$custNo_regdata = ""; //memberId=daihanmusic2
 $custNo_encryptStr = $seed->getEncryptData($sec_key, $custNo_regdata);
 $url1 = "http://ship.epost.go.kr/api.GetCustNo.jparcel?key={$key}{$regdata}{$custNo_encryptStr}"; //custNo xml 리턴
 $result1 = file_get_contents($url1); //url 컨텐츠 저장
